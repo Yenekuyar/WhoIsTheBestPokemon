@@ -3,10 +3,10 @@
     <h2 class="game-config-modal-title">Who is the Best Pokémon?</h2>
     <select class="game-config-modal-select-gen" required>
       <option value="" disabled selected>Select Game Length</option>
-      <option value="short">Short</option>
-      <option value="medium">Medium</option>
-      <option value="long">Long</option>
-      <option value="verylong">Very Long</option>
+      <option value="short">Short - (50 Pokemons)</option>
+      <option value="medium">Medium - (250 Pokemons)</option>
+      <option value="long">Long - (500 Pokemons)</option>
+      <option value="verylong">Very Long - (All Pokemons)</option>
     </select>
     <select class="game-config-modal-select-gen" required>
       <option value="" disabled selected>Select Generation</option>
@@ -19,6 +19,7 @@
       <option value="gen6">Generation 6</option>
       <option value="gen7">Generation 7</option>
       <option value="gen8">Generation 8</option>
+      <option value="gen8">Generation 9</option>
     </select>
     <button class="game-config-modal-submit-button" @click="startGame">Play!</button>
   </div>
