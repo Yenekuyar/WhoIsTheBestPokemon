@@ -31,6 +31,7 @@ props.randomPokemon.url = pokemonData.sprites?.front_default ?? '';
   padding: 12px;
   height: 100%;
   margin: 8px;
+  color: #fff;
   text-align: center;
   border: 8px solid #222;
   image-rendering: pixelated;
