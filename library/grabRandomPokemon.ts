@@ -11,7 +11,10 @@ function grabTwoRandomPokemon(pokemons: IPokemon[], removedPokemon?: number): [I
     secondIndex = Math.floor(Math.random() * pokemons.length);
   } while (secondIndex === firstIndex);
 
-  return [pokemons[firstIndex] as IPokemon, pokemons[secondIndex] as IPokemon];
+  const firstPokemon = pokemons[firstIndex];
+  const secondPokemon = pokemons[secondIndex];
+
+  return [firstPokemon as IPokemon, secondPokemon as IPokemon];
 }
 
 export default grabTwoRandomPokemon;
