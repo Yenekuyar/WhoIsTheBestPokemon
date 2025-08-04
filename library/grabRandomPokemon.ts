@@ -1,10 +1,17 @@
 import type { IPokemon } from "~/types";
 
-function grabRandomPokemon(pokemons: IPokemon[], removedPokemon: number): IPokemon | undefined {
-  if (pokemons.length === 0) {
-    return undefined;
-  }
-  const availablePokemons = pokemons.filter(pokemon => pokemon.name !== removedPokemon.toString());
-  const randomIndex = Math.floor(Math.random() * availablePokemons.length);
-  return availablePokemons[randomIndex];
+// O(1) time complexity
+function grabTwoRandomPokemon(pokemons: IPokemon[], removedPokemon?: number): [IPokemon, IPokemon] {
+  if (pokemons.length < 2) throw new Error("Array must have at least two pokemons");
+
+  let firstIndex = Math.floor(Math.random() * pokemons.length);
+  let secondIndex: number;
+
+  do {
+    secondIndex = Math.floor(Math.random() * pokemons.length);
+  } while (secondIndex === firstIndex);
+
+  return [pokemons[firstIndex] as IPokemon, pokemons[secondIndex] as IPokemon];
 }
+
+export default grabTwoRandomPokemon;
