@@ -1,13 +1,28 @@
 <template>
   <section class="pokemon-card">
-    <h2>Bulbasaur</h2>
-    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" alt="" width="400">
-    <footer>
-      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/4.png" alt="">
-      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/12.png" alt="">
-    </footer>
+    <ul>
+      <li v-for="pokemon in pokemons" :key="pokemon.name">
+        {{ pokemon.name }}
+      </li>
+    </ul>
   </section>
 </template>
+
+<script setup lang="ts">
+import { ref, onMounted } from 'vue'
+import { PokemonAPI } from '~/services';
+import type { IPokemon } from '~/types';
+
+const pokemons = ref<IPokemon[]>([]);
+const notRemovedPokemons = ref<IPokemon[]>([]);
+
+onMounted(async () => {
+  const pokemonAPI = new PokemonAPI();
+  const pokemonsResponse = await pokemonAPI.getAllPokemonsData();
+  pokemons.value = pokemonsResponse;
+  notRemovedPokemons.value = pokemonsResponse;
+})
+</script>
 
 <style scoped>
 .pokemon-card {
