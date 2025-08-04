@@ -1,27 +1,28 @@
 <template>
   <section class="pokemon-card">
-    <ul>
-      <li v-for="pokemon in pokemons" :key="pokemon.name">
-        {{ pokemon.name }}
-      </li>
-    </ul>
+    <div class="pokemon-card-image">
+      <img :src="randomPokemon?.url" alt="Pokemon Image" />
+    </div>
+    <div class="pokemon-card-name">
+      {{ randomPokemon?.name }}
+    </div>
   </section>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { defineProps } from 'vue'
 import { PokemonAPI } from '~/services';
-import type { IPokemon } from '~/types';
+import type { IPokemon } from '~/types/IPokemon'
 
-const pokemons = ref<IPokemon[]>([]);
-const notRemovedPokemons = ref<IPokemon[]>([]);
+const props = defineProps<{
+  randomPokemon: IPokemon
+}>()
 
-onMounted(async () => {
-  const pokemonAPI = new PokemonAPI();
-  const pokemonsResponse = await pokemonAPI.getAllPokemonsData();
-  pokemons.value = pokemonsResponse;
-  notRemovedPokemons.value = pokemonsResponse;
-})
+const pokemonApi = new PokemonAPI();
+const pokemonData = await pokemonApi.getSinglePokemonData(props.randomPokemon.name);
+
+props.randomPokemon.url = pokemonData.sprites?.front_default ?? '';
+
 </script>
 
 <style scoped>
