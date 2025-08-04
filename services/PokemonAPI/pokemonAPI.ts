@@ -8,6 +8,12 @@ class PokemonAPI {
     const data = await response.json();
     return data.results;
   }
+
+  public async getSinglePokemonData(name: string): Promise<IPokemon> {
+    const response = await this.httpClient(`${this.baseUrl}/pokemon/${name}`);
+    const data = await response.json();
+    return data;
+  }
 }
 
 export default PokemonAPI;
