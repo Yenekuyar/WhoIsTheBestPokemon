@@ -1,4 +1,7 @@
+import type { IPokemonType } from "./IPokemonType";
+
 export interface IPokemon {
+  types: IPokemonType[];
   name: string;
   url: string;
   sprites?: {
