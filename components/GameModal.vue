@@ -1,7 +1,10 @@
 <template>
-  <div class="game-modal-component">
+  <div class="game-modal-component" v-if="player1Pokemon && player2Pokemon">
     <section>
       <PokemonCard v-if="player1Pokemon" :randomPokemon="player1Pokemon" />
+    </section>
+    <section>
+      <img src="../public/img/horizontal-arrows.png" alt="horizontal-arrows" />
     </section>
     <section>
       <PokemonCard v-if="player2Pokemon" :randomPokemon="player2Pokemon" />
@@ -48,5 +51,13 @@ onMounted(async () => {
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   z-index: 1000;
+}
+
+.game-modal-component section {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 </style>
