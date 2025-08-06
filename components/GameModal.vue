@@ -31,8 +31,10 @@ onMounted(async () => {
   pokemons.value = pokemonsResponse;
   remainingPokemons.value = pokemonsResponse;
 
-  player1Pokemon.value = grabRandomPokemon(remainingPokemons.value)[0];
-  player2Pokemon.value = grabRandomPokemon(remainingPokemons.value)[1];
+  const randomPokemons = grabRandomPokemon(remainingPokemons.value);
+
+  player1Pokemon.value = randomPokemons[0];
+  player2Pokemon.value = randomPokemons[1];
 })
 </script>
 
